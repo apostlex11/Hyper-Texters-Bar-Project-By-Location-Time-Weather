@@ -1,1 +1,13 @@
-/* placeholder */
+.border {
+    border: solid;
+
+}
+
+.rows{
+    display: flex;
+    flex-direction: column;
+}
+
+.table {
+    margin: auto;
+}
