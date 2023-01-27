@@ -14,44 +14,46 @@
   <body>
     <main>
       <section class="hero is-primary">
-        <div class="hero-body">
-          <p class="title">Sunny Food Finder</p>
-          <p class="subtitle">Primary subtitle</p>
+        <div class="hero-body has-text-centered">
+          <p class="title">Sunny Beer Finder</p>
+          <p class="subtitle">for the alcoholic in you!</p>
         </div>
       </section>
 
-      <div class="columns">
+      <div class="columns is-centered">
         <!--<div class="control column is-one-fifth">
                    <input id=" class="input is-focused" type="text" placeholder="Ex: Cleveland, OH"> 
                 </div> -->
 
-        <form id="search" class="column">
+        <form id="search" class="column is-one-fifth">
           <input
             id="result"
             class="input is-focused"
             type="text"
             placeholder="Ex: Cleveland, OH"
           />
-          <button type="submit" class="button is-danger is-outlined">
+          <div class="column has-text-centered">
+          <button id="srchBTN" type="submit" class="button is-danger is-outlined">
             Search
           </button>
+        </div>
         </form>
       </div>
 
-      <p class="title has-text-centered">City/State name</p>
+      <p id="cityTitle" class="title has-text-centered">City/State name</p>
 
-      <div class="table-container centered">
+      <div class="table-container">
         <table class="table is-bordered is-hoverable">
           <thead>
             <tr>
               <th></th>
-              <th><abbr title="Position">day1</abbr></th>
+              <th>day1</th>
               <th>day2</th>
-              <th><abbr>day3</abbr></th>
-              <th><abbr>day4</abbr></th>
-              <th><abbr>day5</abbr></th>
-              <th><abbr>day6</abbr></th>
-              <th><abbr>day7</abbr></th>
+              <th>day3</th>
+              <th>day4</th>
+              <th>day5</th>
+              <th>day6</th>
+              <th>day7</th>
             </tr>
           </thead>
           <tbody>
