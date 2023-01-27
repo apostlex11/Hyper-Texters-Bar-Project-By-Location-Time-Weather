@@ -4,82 +4,120 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sunny Food Finder</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
     <link rel="stylesheet" type="text/css" href="./assets/style.css" />
   </head>
 
   <body>
-
     <main>
-        <section class="hero is-primary">
-            <div class="hero-body">
-              <p class="title">
-                Sunny Food Finder
-              </p>
-              <p class="subtitle">
-                Primary subtitle
-              </p>
-            </div>
-          </section>
+      <section class="hero is-primary">
+        <div class="hero-body">
+          <p class="title">Sunny Food Finder</p>
+          <p class="subtitle">Primary subtitle</p>
+        </div>
+      </section>
 
-          <div class="columns">
-              <div class="control column is-one-fifth">
-                  <input class="input is-focused" type="text" placeholder="Ex: Cleveland, OH">
-                </div>
-                
-                <div class="column">
-                    <button class="button is-danger is-outlined">Search</button>
-                </div>
-            </div>
+      <div class="columns">
+        <!--<div class="control column is-one-fifth">
+                   <input id=" class="input is-focused" type="text" placeholder="Ex: Cleveland, OH"> 
+                </div> -->
 
-            <p class="title has-text-centered">
-              City/State name
-            </p>
+        <form id="search" class="column">
+          <input
+            id="result"
+            class="input is-focused"
+            type="text"
+            placeholder="Ex: Cleveland, OH"
+          />
+          <button type="submit" class="button is-danger is-outlined">
+            Search
+          </button>
+        </form>
+      </div>
 
-            <div class="table-container centered">
-                <table class="table is-bordered is-hoverable">
-                    <thead>
-                        <tr>
-                          <th></th>
-                          <th><abbr title="Position">day1</abbr></th>
-                          <th>day2</th>
-                          <th><abbr>day3</abbr></th>
-                          <th><abbr>day4</abbr></th>
-                          <th><abbr>day5</abbr></th>
-                          <th><abbr>day6</abbr></th>
-                          <th><abbr>day7</abbr></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr id="TS1">
-                            <th>6am</th>
-                        </tr>
-                        <tr id="TS2">
-                            <th>9am</th>
-                        </tr>
-                        <tr id="TS3">
-                            <th>12pm</th>
-                        </tr>
-                        <tr id="TS4">
-                            <th>3pm</th>
-                        </tr>
-                        <tr id="TS5">
-                            <th>6pm</th>
-                        </tr>
-                        <tr id="TS6">
-                            <th>9pm</th>
-                        </tr>
-                      </tbody>
-                </table>
-            </div>
+      <p class="title has-text-centered">City/State name</p>
 
+      <div class="table-container centered">
+        <table class="table is-bordered is-hoverable">
+          <thead>
+            <tr>
+              <th></th>
+              <th><abbr title="Position">day1</abbr></th>
+              <th>day2</th>
+              <th><abbr>day3</abbr></th>
+              <th><abbr>day4</abbr></th>
+              <th><abbr>day5</abbr></th>
+              <th><abbr>day6</abbr></th>
+              <th><abbr>day7</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="TS1">
+              <th>6am</th>
+              <td id="1-6">1-6am</td>
+            </tr>
+            <tr id="TS2">
+              <th>9am</th>
+            </tr>
+            <tr id="TS3">
+              <th>12pm</th>
+            </tr>
+            <tr id="TS4">
+              <th>3pm</th>
+            </tr>
+            <tr id="TS5">
+              <th>6pm</th>
+            </tr>
+            <tr id="TS6">
+              <th>9pm</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="columns is-centered">
+      <div class="column is-2">
+        <div class="box" style="height: 600px;">
+          <p class="overlay" style="height: 550px;"> example overlay</p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="box" style="height: 600px;">
+          <p></p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="box" style="height: 600px;">
+          <p></p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="box" style="height: 600px;">
+          <p></p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="box" style="height: 600px;">
+          <p></p>
+        </div>
+      </div>
+    </div>
     </main>
 
     <footer>
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-
-        <script src="./assets/script.js"></script>
-
+     
     </footer>
+     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 
+      <script src="./assets/script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
+    
+   
   </body>
+</html>
