@@ -20,3 +20,11 @@
     opacity: 0.9;
     padding: 1em;
 }
+
+#srchBTN {
+    margin-top: 20px;
+}
+
+#result {
+    margin-top: 30px;
+}

@@ -1,5 +1,8 @@
 //var button = $("button");
+var cityTitle = document.querySelector('#cityTitle');
 var cityData = {};
+
+console.log(cityTitle.textContent);
 
 const weatherLookup = function (event) {
   event.preventDefault();
@@ -52,6 +55,7 @@ const current = function (data) {
   $("#humidity").text(data.main.humidity);
   //   saveSearch(data.name);
   console.log(data);
+  cityTitle.textContent = data.name;
 };
 
 const forecast = function (data) {
@@ -85,7 +89,7 @@ const forecast = function (data) {
     date.text(localTime);
     //card.appendTo(template);
     //card.append(wind, temp, humidity, date);
-    console.log(wind, temp, humidity);
+    //console.log(wind, temp, humidity);
 
     //template.append(card);
   });
