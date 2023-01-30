@@ -1,18 +1,28 @@
 //var button = $("button");
 var cityTitle = document.querySelector('#cityTitle');
 var cityData = {};
+var cityStateArr = [];
+
+//city and state to be define by user input
 
 console.log(cityTitle.textContent);
 
+
 const weatherLookup = function (event) {
   event.preventDefault();
-
+  
+  searchInputVal = document.querySelector("#result").value;
+  cityStateArr = searchInputVal.split(", ");
+  console.log(cityStateArr);
+  
+  
   var city = $(".input").val();
   console.log(city);
   fetch(
     "https://api.openweathermap.org/data/2.5/weather?q=" +
-      city +
-      "&appid=7e8f7106e0004f7fac5f624653ef7dca&units=imperial"
+    cityStateArr[0] + ',' + cityStateArr[1] + ',US' +
+    "&appid=7e8f7106e0004f7fac5f624653ef7dca&units=imperial"
+    
   )
     .then(function (response) {
       return response.json();
@@ -34,10 +44,10 @@ const weatherLookup = function (event) {
 const forecastLookup = function (lat, lon) {
   fetch(
     "https://api.openweathermap.org/data/2.5/forecast?lat=" +
-      lat +
-      "&lon=" +
-      lon +
-      "&appid=7e8f7106e0004f7fac5f624653ef7dca&units=imperial"
+    lat +
+    "&lon=" +
+    lon +
+    "&appid=7e8f7106e0004f7fac5f624653ef7dca&units=imperial"
   )
     .then(function (response) {
       //console.log(response)
