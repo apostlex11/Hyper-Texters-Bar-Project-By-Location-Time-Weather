@@ -1,23 +1,21 @@
 //var button = $("button");
 var cityTitle = document.querySelector('#cityTitle');
+var table = $('.table');
 var cityData = {};
 var cityStateArr = [];
 
 //city and state to be define by user input
-
-console.log(cityTitle.textContent);
-
 
 const weatherLookup = function (event) {
   event.preventDefault();
   
   searchInputVal = document.querySelector("#result").value;
   cityStateArr = searchInputVal.split(", ");
-  console.log(cityStateArr);
+  //console.log(cityStateArr);
   
   
-  var city = $(".input").val();
-  console.log(city);
+  // var city = $(".input").val();
+  // console.log(city);
   fetch(
     "https://api.openweathermap.org/data/2.5/weather?q=" +
     cityStateArr[0] + ',' + cityStateArr[1] + ',US' +
@@ -69,40 +67,44 @@ const current = function (data) {
 };
 
 const forecast = function (data) {
-  // console.log(localTime, data, cityData);
-  var daysArray = [
-    //Index 0 starts at 6:00 AM
-    //Every 8 indexes starts a new day
-    data.list[0],
-    data.list[1],
-    data.list[2],
-    data.list[3],
-    data.list[4],
-    data.list[5],
-    data.list[6],
-    data.list[7],
-    data.list[8],
-    data.list[9],
-  ];
-  var template = $(".forecast");
-  daysArray.forEach(function (day) {
-    var localTime = dayjs((day.dt + data.city.timezone) * 1000).format(
-      "MM/DD/YYYY"
-    );
-    var date = $("#1-6");
-    var wind = $("#1-6");
-    var temp = $("#1-6");
-    var humidity = $("#1-6");
-    wind.text(day.wind.speed + "MPH");
-    humidity.text(day.main.humidity + "%");
-    temp.text(day.main.feels_like + "F");
-    date.text(localTime);
+
+  for(x = 0; x < data.list.length; x += 8){
+    var dayHeader = $('#' + x);
+    localTime = dayjs((data.list[x].dt + data.city.timezone) * 1000).format("MM/DD/YYYY");
+    dayHeader[0].innerHTML = localTime;
+    for(i = 0; i < 6; i++){
+      var n = x + i + 1;
+      var td = $("<td>");
+      var tdContent = $('#TS' + i);
+      td.text(data.list[n].weather[0].description);
+      tdContent.append(td);
+    }
+  }
+
+  // function weatherStats() {
+
+  // }
+
+  // var template = $(".forecast");
+  // daysArray.forEach(function (day) {
+  //   var localTime = dayjs((day.dt + data.city.timezone) * 1000).format(
+  //     "MM/DD/YYYY"
+  //   );
+  //   var date = $("#1-6");
+  //   var wind = $("#1-6");
+  //   var temp = $("#1-6");
+  //   var humidity = $("#1-6");
+  //   wind.text(day.wind.speed + "MPH");
+  //   humidity.text(day.main.humidity + "%");
+  //   temp.text(day.main.feels_like + "F");
+  //   date.text(localTime);
     //card.appendTo(template);
     //card.append(wind, temp, humidity, date);
     //console.log(wind, temp, humidity);
 
     //template.append(card);
-  });
-};
+//   });
+// table.on("click", "th", weatherStats);
+  };
 
 $("#search").on("submit", weatherLookup);
