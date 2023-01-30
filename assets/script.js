@@ -4,6 +4,7 @@ var table = $('.table');
 var cityData = {};
 var cityStateArr = [];
 
+
 //city and state to be define by user input
 
 const weatherLookup = function (event) {
@@ -74,10 +75,15 @@ const forecast = function (data) {
     dayHeader[0].innerHTML = localTime;
     for(i = 0; i < 6; i++){
       var n = x + i + 1;
+      var iconcode = data.list[n].weather[0].icon;
+      var imgEl = $("<img id='wicon' src='http://openweathermap.org/img/w/" + iconcode + ".png' alt='Weather icon'>");
       var td = $("<td>");
+      var linebreak = $("<br>");
       var tdContent = $('#TS' + i);
       td.text(data.list[n].weather[0].description);
       tdContent.append(td);
+      td.append(linebreak);
+      td.append(imgEl);
     }
   }
 
