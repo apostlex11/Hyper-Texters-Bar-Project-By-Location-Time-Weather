@@ -21,10 +21,6 @@
       </section>
 
       <div class="columns is-centered">
-        <!--<div class="control column is-one-fifth">
-                   <input id=" class="input is-focused" type="text" placeholder="Ex: Cleveland, OH"> 
-                </div> -->
-
         <form id="search" class="column is-one-fifth">
           <input
             id="result"
@@ -40,69 +36,78 @@
         </form>
       </div>
 
-      <p id="cityTitle" class="title has-text-centered">City/State name</p>
+      <p id="cityTitle" class="title has-text-centered">City name</p>
 
       <div class="table-container">
         <table class="table is-bordered is-hoverable">
           <thead>
             <tr>
               <th></th>
-              <th>day1</th>
-              <th>day2</th>
-              <th>day3</th>
-              <th>day4</th>
-              <th>day5</th>
-              <th>day6</th>
-              <th>day7</th>
+              <th id="0">day1</th>
+              <th id="8">day2</th>
+              <th id="16">day3</th>
+              <th id="24">day4</th>
+              <th id="32">day5</th>
             </tr>
           </thead>
           <tbody>
-            <tr id="TS1">
+            <tr id="TS0">
               <th>6am</th>
-              <td id="1-6">1-6am</td>
             </tr>
-            <tr id="TS2">
+            <tr id="TS1">
               <th>9am</th>
             </tr>
-            <tr id="TS3">
+            <tr id="TS2">
               <th>12pm</th>
             </tr>
-            <tr id="TS4">
+            <tr id="TS3">
               <th>3pm</th>
             </tr>
-            <tr id="TS5">
+            <tr id="TS4">
               <th>6pm</th>
             </tr>
-            <tr id="TS6">
+            <tr id="TS5">
               <th>9pm</th>
             </tr>
           </tbody>
         </table>
       </div>
+
+      <div class="columns is-centered">
+      <button id="clearBTN" value="Reload Page" onClick="window.location.reload(true)" type="submit" class="button is-danger is-outlined align-items">
+        Clear table
+      </button>
+      </div>
+
       <div class="columns is-centered">
       <div class="column is-2">
-        <div class="box" style="height: 600px;">
-          <p class="overlay" style="height: 550px;"> example overlay</p>
+        <div class="box" style="height: 300px;">
+          <p class="overlay" style="height: 250px;"> example overlay</p>
         </div>
       </div>
       <div class="column is-2">
-        <div class="box" style="height: 600px;">
-          <p></p>
+        <div class="box" style="height: 300px;">
+          <p class="overlay" style="height: 250px;"></p>
         </div>
       </div>
       <div class="column is-2">
-        <div class="box" style="height: 600px;">
-          <p></p>
+        <div class="box" style="height: 300px;">
+          <p class="overlay" style="height: 250px;"></p>
         </div>
       </div>
       <div class="column is-2">
-        <div class="box" style="height: 600px;">
-          <p></p>
+        <div class="box" style="height: 300px;">
+          <p class="overlay" style="height: 250px;"></p>
         </div>
       </div>
       <div class="column is-2">
-        <div class="box" style="height: 600px;">
-          <p></p>
+        <div class="box" style="height: 300px;">
+          <p class="overlay" style="height: 250px;"></p>
+        </div>
+      </div>
+      <div class="column is-2">
+        <div class="box" style="height: 300px;">
+          <p class="overlay" style="height: 250px;"></p>
         </div>
       </div>
     </div>
