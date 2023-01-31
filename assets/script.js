@@ -1,27 +1,26 @@
 //var button = $("button");
-var cityTitle = document.querySelector('#cityTitle');
-var table = $('.table');
+var cityTitle = document.querySelector("#cityTitle");
+var table = $(".table");
+//city and state to be define by user input
 var cityData = {};
 var cityStateArr = [];
 
-
-//city and state to be define by user input
-
 const weatherLookup = function (event) {
   event.preventDefault();
-  
+
   searchInputVal = document.querySelector("#result").value;
   cityStateArr = searchInputVal.split(", ");
   //console.log(cityStateArr);
-  
-  
+
   // var city = $(".input").val();
   // console.log(city);
   fetch(
     "https://api.openweathermap.org/data/2.5/weather?q=" +
-    cityStateArr[0] + ',' + cityStateArr[1] + ',US' +
-    "&appid=7e8f7106e0004f7fac5f624653ef7dca&units=imperial"
-    
+      cityStateArr[0] +
+      "," +
+      cityStateArr[1] +
+      ",US" +
+      "&appid=7e8f7106e0004f7fac5f624653ef7dca&units=imperial"
   )
     .then(function (response) {
       return response.json();
@@ -44,10 +43,10 @@ const weatherLookup = function (event) {
 const forecastLookup = function (lat, lon) {
   fetch(
     "https://api.openweathermap.org/data/2.5/forecast?lat=" +
-    lat +
-    "&lon=" +
-    lon +
-    "&appid=7e8f7106e0004f7fac5f624653ef7dca&units=imperial"
+      lat +
+      "&lon=" +
+      lon +
+      "&appid=7e8f7106e0004f7fac5f624653ef7dca&units=imperial"
   )
     .then(function (response) {
       //console.log(response)
@@ -69,30 +68,39 @@ const current = function (data) {
 };
 
 const forecast = function (data) {
-
-  for(x = 0; x < data.list.length; x += 8){
-    var dayHeader = $('#' + x);
-    localTime = dayjs((data.list[x].dt + data.city.timezone) * 1000).format("MM/DD/YYYY");
+  for (x = 0; x < data.list.length; x += 8) {
+    var dayHeader = $("#" + x);
+    localTime = dayjs((data.list[x].dt + data.city.timezone) * 1000).format(
+      "MM/DD/YYYY"
+    );
     console.log(localTime);
     dayHeader[0].innerHTML = localTime;
-    for(i = 0; i < 6; i++){
+    for (i = 0; i < 6; i++) {
       var n = x + i + 1;
       var iconcode = data.list[n].weather[0].icon;
-      var imgEl = $("<img id='wicon' src='http://openweathermap.org/img/w/" + iconcode + ".png' alt='Weather icon'>");
-      var td = $("<td>");
+      var imgEl = $(
+        "<img id='wicon' src='http://openweathermap.org/img/w/" +
+          iconcode +
+          ".png' alt='Weather icon'>"
+      );
+      //give every cell an id of the unix timestamp to be passed into Yelp API call
+      var td = $("<td id=" + data.list[n].dt + ">");
       var linebreak = $("<br>");
-      var tdContent = $('#TS' + i);
+      var tdContent = $("#TS" + i);
       td.text(data.list[n].weather[0].description);
       tdContent.append(td);
-      if(data.list[n].weather[0].description === 'clear sky' || data.list[n].weather[0].description === "broken clouds" ||
-      data.list[n].weather[0].description === "scattered clouds" ||
-      data.list[n].weather[0].description === "few clouds"){
+      if (
+        data.list[n].weather[0].description === "clear sky" ||
+        data.list[n].weather[0].description === "broken clouds" ||
+        data.list[n].weather[0].description === "scattered clouds" ||
+        data.list[n].weather[0].description === "few clouds"
+      ) {
         td.append(linebreak);
         td.append(imgEl);
-        td[0].style.backgroundColor = 'yellow';
-      } else if(data.list[n].weather[0].description !== 'clear sky') {
-        td[0].style.backgroundColor = 'gray';
-       }
+        td[0].style.backgroundColor = "yellow";
+      } else if (data.list[n].weather[0].description !== "clear sky") {
+        td[0].style.backgroundColor = "gray";
+      }
     }
   }
 
@@ -105,38 +113,58 @@ const forecast = function (data) {
   //   var localTime = dayjs((day.dt + data.city.timezone) * 1000).format(
   //     "MM/DD/YYYY"
   //   );
+};
 
-  };
+var tableContainerEl = document.querySelector(".table-container");
+//barTime will take the class id of a clicked weather block
+var barTime;
+tableContainerEl.addEventListener("click", function (event) {
+  var clickTarget = event.target;
+  if (event.target.style.backgroundColor === "yellow") {
+    //if user clicks on a yellow cell
+    barTime = event.target.id; // set barTime to id, which is the un
+    console.log("bartime is " + barTime); // delete
 
-  //***** Yelp API */
-var lat = 44.05767274110839;
-var long = -121.31572795673046;
-var hours;
-var barResults;
+    // console.log("it's yellow");
+  } else if (event.target.parentElement.style.backgroundColor === "yellow") {
+    barTime = event.target.parentElement.id;
+    console.log("bartime is " + barTime); // delete
+  }
 
-let yelpQueryURL =
-  "https://morning-forest-62820.herokuapp.com/https://api.yelp.com/v3/businesses/search";
-const yelpAPIKey =
-  "OvqraNwLlNROU78GbI7ZocG6XKXRhYIKGby6JiTRzyOqjzUrjnVRThOlOtQSVIIN2dh0TWrttP0TtXJncUKu6sEKB4ywoOo-jAz1HjmDta069a2EQC1mvn37QGbPY3Yx";
-
-$.ajax({
-  url: yelpQueryURL,
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    "x-requested-with": "xmlhttprequest",
-    "Access-Control-Allow-Origin": "*",
-    Authorization: `Bearer ${yelpAPIKey}`,
-  },
-  data: {
-    latitude: lat,
-    longitude: long,
-    categories: "bars",
-    open_at: 1675047600, //only works for the current week Monday-Sunday. problem on Yelp's end.
-  },
-}).then(function (res) {
-  barResults = res;
-  console.log(barResults);
+  callYelp();
 });
+
+//***** Yelp API */
+function callYelp() {
+  var lat = cityData.coord.lat;
+  var long = cityData.coord.lon;
+  var hours;
+  var barResults;
+
+  let yelpQueryURL =
+    "https://morning-forest-62820.herokuapp.com/https://api.yelp.com/v3/businesses/search";
+  const yelpAPIKey =
+    "OvqraNwLlNROU78GbI7ZocG6XKXRhYIKGby6JiTRzyOqjzUrjnVRThOlOtQSVIIN2dh0TWrttP0TtXJncUKu6sEKB4ywoOo-jAz1HjmDta069a2EQC1mvn37QGbPY3Yx";
+
+  $.ajax({
+    url: yelpQueryURL,
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      "x-requested-with": "xmlhttprequest",
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `Bearer ${yelpAPIKey}`,
+    },
+    data: {
+      latitude: lat,
+      longitude: long,
+      categories: "bars",
+      open_at: barTime, //only works for the current week Monday-Sunday. problem on Yelp's end.
+    },
+  }).then(function (res) {
+    barResults = res;
+    console.log(barResults);
+  });
+}
 
 $("#search").on("submit", weatherLookup);
