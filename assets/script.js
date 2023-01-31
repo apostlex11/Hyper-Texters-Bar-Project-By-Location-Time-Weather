@@ -28,10 +28,11 @@ const weatherLookup = function (event) {
     })
     .then(function (data) {
       console.log(data);
+      TestFunction();
       current(data);
       cityData = data;
       forecastLookup(data.coord.lat, data.coord.lon);
-
+ 
       var container = $("#current");
       //data in console will have lat and long for city
       //then do string concat lat and long with what you get in the data object
@@ -113,4 +114,12 @@ const forecast = function (data) {
 // table.on("click", "th", weatherStats);
   };
 
-$("#search").on("submit", weatherLookup);
+
+  function TestFunction () {
+    var T = document.getElementById("cityTitle")
+    T.style.display = "block";
+    var T2 = document.getElementById("tableDisplay")
+    T2.style.display = "block";
+};
+
+$("#srchBTN").on("click", weatherLookup);
