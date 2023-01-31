@@ -125,14 +125,14 @@ tableContainerEl.addEventListener("click", function (event) {
     //if user clicks on a yellow cell
     barTime = event.target.id; // set barTime to id, which is the un
     console.log("bartime is " + barTime); // delete
+    callYelp();
 
     // console.log("it's yellow");
   } else if (event.target.parentElement.style.backgroundColor === "yellow") {
     barTime = event.target.parentElement.id;
     console.log("bartime is " + barTime); // delete
+    callYelp();
   }
-
-  callYelp();
 });
 
 //***** Yelp API */
