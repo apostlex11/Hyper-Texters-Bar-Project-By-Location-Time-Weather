@@ -5,6 +5,13 @@ var table = $(".table");
 var cityData = {};
 var cityStateArr = [];
 
+//vvv Variables for Yelp Api functions vvv
+
+var tableContainerEl = document.querySelector(".table-container");
+
+var barTime; //barTime will take the class id of a clicked weather block
+var barResults; //yelp api response object
+
 const weatherLookup = function (event) {
   event.preventDefault();
 
@@ -32,7 +39,7 @@ const weatherLookup = function (event) {
       cityData = data;
       console.log(cityData);
       forecastLookup(data.coord.lat, data.coord.lon);
- 
+
       var container = $("#current");
       //data in console will have lat and long for city
       //then do string concat lat and long with what you get in the data object
@@ -116,9 +123,8 @@ const forecast = function (data) {
   //   );
 };
 
-var tableContainerEl = document.querySelector(".table-container");
-//barTime will take the class id of a clicked weather block
-var barTime;
+//***** Yelp API section below *****/
+
 tableContainerEl.addEventListener("click", function (event) {
   var clickTarget = event.target;
   if (event.target.style.backgroundColor === "yellow") {
@@ -135,12 +141,9 @@ tableContainerEl.addEventListener("click", function (event) {
   }
 });
 
-//***** Yelp API */
 function callYelp() {
   var lat = cityData.coord.lat;
   var long = cityData.coord.lon;
-  var hours;
-  var barResults;
 
   let yelpQueryURL =
     "https://morning-forest-62820.herokuapp.com/https://api.yelp.com/v3/businesses/search";
@@ -165,15 +168,25 @@ function callYelp() {
   }).then(function (res) {
     barResults = res;
     console.log(barResults);
+    displayBars();
   });
 }
 
+// display bar information
+function displayBars() {
+  var barEl;
+  for (let index = 0; index < 5; index++) {
+    barEl = document.getElementById(`bar-${index}`);
+    console.log("barEl = " + barEl, barResults);
+    barEl.textContent = barResults.businesses[index].name;
+  }
+}
 
-  function TestFunction () {
-    var T = document.getElementById("cityTitle")
-    T.style.display = "block";
-    var T2 = document.getElementById("tableDisplay")
-    T2.style.display = "block";
-};
+function TestFunction() {
+  var T = document.getElementById("cityTitle");
+  T.style.display = "block";
+  var T2 = document.getElementById("tableDisplay");
+  T2.style.display = "block";
+}
 
 $("#srchBTN").on("click", weatherLookup);

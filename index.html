@@ -37,7 +37,7 @@
           <div class="column has-text-centered">
             <button
               id="srchBTN"
-              type="submit"
+              type="button"
               class="button is-danger is-outlined"
             >
               Search
@@ -49,14 +49,15 @@
             <button id="clearBTN" value="Reload Page" onClick="window.location.reload(true)" type="submit" class="button is-danger is-outlined align-items">
               Clear table
             </button>
-               
-        </div>
+          </div>
         </form>
       </div>
 
-      <p id="cityTitle" class="title has-text-centered" style="display:none;" >City name</p>
+      <p id="cityTitle" class="title has-text-centered" style="display: none">
+        City name
+      </p>
 
-      <div id="tableDisplay" class="table-container" style="display:none;" >
+      <div id="tableDisplay" class="table-container" style="display: none">
         <table class="table is-bordered is-hoverable">
           <thead>
             <tr>
@@ -91,31 +92,33 @@
         </table>
       </div>
 
-
+      <!-- bar list -->
       <div class="columns is-centered">
         <div class="column is-2">
           <div class="box" style="height: 300px">
-            <p class="overlay" style="height: 250px">example overlay</p>
+            <p class="overlay" style="height: 250px" id="bar-0">
+              example overlay
+            </p>
           </div>
         </div>
         <div class="column is-2">
           <div class="box" style="height: 300px">
-            <p class="overlay" style="height: 250px"></p>
+            <p class="overlay" style="height: 250px" id="bar-1"></p>
           </div>
         </div>
         <div class="column is-2">
           <div class="box" style="height: 300px">
-            <p class="overlay" style="height: 250px"></p>
+            <p class="overlay" style="height: 250px" id="bar-2"></p>
           </div>
         </div>
         <div class="column is-2">
           <div class="box" style="height: 300px">
-            <p class="overlay" style="height: 250px"></p>
+            <p class="overlay" style="height: 250px" id="bar-3"></p>
           </div>
         </div>
         <div class="column is-2">
           <div class="box" style="height: 300px">
-            <p class="overlay" style="height: 250px"></p>
+            <p class="overlay" style="height: 250px" id="bar-4"></p>
           </div>
         </div>
         <!-- <div class="column is-2">
