@@ -69,6 +69,7 @@ const current = function (data) {
 };
 
 const forecast = function (data) {
+  $('table').find('td').remove();
   for (x = 0; x < data.list.length; x += 8) {
     var dayHeader = $("#" + x);
     localTime = dayjs((data.list[x].dt + data.city.timezone) * 1000).format(
@@ -77,6 +78,8 @@ const forecast = function (data) {
     console.log(localTime);
     dayHeader[0].innerHTML = localTime;
     for (i = 0; i < 6; i++) {
+      var tdContent = $("#TS" + i);
+      
       var n = x + i + 1;
       var iconcode = data.list[n].weather[0].icon;
       var imgEl = $(
@@ -87,7 +90,6 @@ const forecast = function (data) {
       //give every cell an id of the unix timestamp to be passed into Yelp API call
       var td = $("<td id=" + data.list[n].dt + ">");
       var linebreak = $("<br>");
-      var tdContent = $("#TS" + i);
       td.text(data.list[n].weather[0].description);
       tdContent.append(td);
       if (
