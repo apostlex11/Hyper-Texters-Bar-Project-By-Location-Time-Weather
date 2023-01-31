@@ -8,6 +8,9 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/style.css" />
   </head>
 
@@ -29,19 +32,22 @@
             placeholder="Ex: Cleveland, OH"
           />
           <div class="column has-text-centered">
-            <button
-              id="srchBTN"
-              type="submit"
-              class="button is-danger is-outlined"
-            >
-              Search
+
+          <button id="srchBTN" type="button" class="button is-danger is-outlined">
+            Search
+          </button>
+            <button id="clearBTN" value="Reload Page" onClick="window.location.reload(true)" type="submit" class="button is-danger is-outlined align-items">
+              Clear table
             </button>
-          </div>
+               
+        </div>
         </form>
       </div>
 
-      <p id="cityTitle" class="title has-text-centered">City name</p>
-      <div class="table-container">
+      <p id="cityTitle" class="title has-text-centered" style="display:none;" >City name</p>
+
+      <div id="tableDisplay" class="table-container" style="display:none;" >
+
         <table class="table is-bordered is-hoverable">
           <thead>
             <tr>
@@ -74,20 +80,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <button
-            id="clearBTN"
-            value="Reload Page"
-            onClick="window.location.reload(true)"
-            type="submit"
-            class="button is-danger is-outlined align-items"
-          >
-            Clear table
-          </button>
-        </div>
       </div>
 
       <div class="columns is-centered">

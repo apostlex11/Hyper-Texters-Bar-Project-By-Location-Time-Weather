@@ -10,6 +10,8 @@
 
 .table {
     margin: auto;
+    padding: 20px;
+    color: hsl(171, 100%, 41%)
 }
 
 .overlay {
@@ -32,5 +34,32 @@
 
 #result {
     margin-top: 30px;
+}
+
+#cityTitle {
+    font-weight: 500;
+    font-family: 'Oswald', sans-serif;
+}
+
+#tableDisplay {
+    font-family: 'Oswald', sans-serif;
+}
+
+.table, th, td, tr {
+    border: 2px solid green;
+    text-align:center;
+    padding: 20px;
+}
+
+.table th {
+    border: 2px solid green;
+}
+
+.table td {
+    border: 2px solid green;
+}
+
+.table tr {
+    border: 2px solid green;
 }
 
