@@ -30,6 +30,7 @@ const weatherLookup = function (event) {
       console.log(data);
       current(data);
       cityData = data;
+      console.log(cityData);
       forecastLookup(data.coord.lat, data.coord.lon);
 
       var container = $("#current");
@@ -72,6 +73,7 @@ const forecast = function (data) {
   for(x = 0; x < data.list.length; x += 8){
     var dayHeader = $('#' + x);
     localTime = dayjs((data.list[x].dt + data.city.timezone) * 1000).format("MM/DD/YYYY");
+    console.log(localTime);
     dayHeader[0].innerHTML = localTime;
     for(i = 0; i < 6; i++){
       var n = x + i + 1;
@@ -82,8 +84,15 @@ const forecast = function (data) {
       var tdContent = $('#TS' + i);
       td.text(data.list[n].weather[0].description);
       tdContent.append(td);
-      td.append(linebreak);
-      td.append(imgEl);
+      if(data.list[n].weather[0].description === 'clear sky' || data.list[n].weather[0].description === "broken clouds" ||
+      data.list[n].weather[0].description === "scattered clouds" ||
+      data.list[n].weather[0].description === "few clouds"){
+        td.append(linebreak);
+        td.append(imgEl);
+        td[0].style.backgroundColor = 'yellow';
+      } else if(data.list[n].weather[0].description !== 'clear sky') {
+        td[0].style.backgroundColor = 'gray';
+       }
     }
   }
 
@@ -96,21 +105,38 @@ const forecast = function (data) {
   //   var localTime = dayjs((day.dt + data.city.timezone) * 1000).format(
   //     "MM/DD/YYYY"
   //   );
-  //   var date = $("#1-6");
-  //   var wind = $("#1-6");
-  //   var temp = $("#1-6");
-  //   var humidity = $("#1-6");
-  //   wind.text(day.wind.speed + "MPH");
-  //   humidity.text(day.main.humidity + "%");
-  //   temp.text(day.main.feels_like + "F");
-  //   date.text(localTime);
-    //card.appendTo(template);
-    //card.append(wind, temp, humidity, date);
-    //console.log(wind, temp, humidity);
 
-    //template.append(card);
-//   });
-// table.on("click", "th", weatherStats);
   };
+
+  //***** Yelp API */
+var lat = 44.05767274110839;
+var long = -121.31572795673046;
+var hours;
+var barResults;
+
+let yelpQueryURL =
+  "https://morning-forest-62820.herokuapp.com/https://api.yelp.com/v3/businesses/search";
+const yelpAPIKey =
+  "OvqraNwLlNROU78GbI7ZocG6XKXRhYIKGby6JiTRzyOqjzUrjnVRThOlOtQSVIIN2dh0TWrttP0TtXJncUKu6sEKB4ywoOo-jAz1HjmDta069a2EQC1mvn37QGbPY3Yx";
+
+$.ajax({
+  url: yelpQueryURL,
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    "x-requested-with": "xmlhttprequest",
+    "Access-Control-Allow-Origin": "*",
+    Authorization: `Bearer ${yelpAPIKey}`,
+  },
+  data: {
+    latitude: lat,
+    longitude: long,
+    categories: "bars",
+    open_at: 1675047600, //only works for the current week Monday-Sunday. problem on Yelp's end.
+  },
+}).then(function (res) {
+  barResults = res;
+  console.log(barResults);
+});
 
 $("#search").on("submit", weatherLookup);
