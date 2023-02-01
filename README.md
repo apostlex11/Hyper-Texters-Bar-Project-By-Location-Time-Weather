@@ -18,7 +18,7 @@ Upon clicking the desired sunny time block, a Yelp API call is made and 5 bar re
 
 The user can then click on a bar to visit its Yelp page to learn more, and hopefully grab a refreshing sunny pint.
 
-Demo:
+Demo:  
 ![gif demonstrating product functionality](./assets/img/sunny-beer-finder-demo.gif)
 
 Our acceptance criteria for this project was:
@@ -37,14 +37,14 @@ When we refresh the page, the last forecast loads on the screen.
 
 ## Credits
 
-**Team Members:**
+**Team Members:**  
 [Jordan Pace](https://github.com/Jaydonger)  
 [Michael Falcon](https://github.com/ZOID415)  
 [Terry Sa](https://github.com/apostlex11)  
 [Jonathan Gomer](https://github.com/jongomer22)  
 [Christopher DuBois](https://github.com/rhubarb414)
 
-**Third-party apps:**
+**Third-party apps:**  
 [OpenWeather API](https://openweathermap.org/api/one-call-3)  
 [Yelp API](https://docs.developer.yelp.com/docs/fusion-intro)  
 [cors-anywhere](https://github.com/Rob--W/cors-anywhere/)  
