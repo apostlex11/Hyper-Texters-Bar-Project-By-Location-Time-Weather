@@ -178,6 +178,7 @@ function callYelp() {
 
 // display bar information
 function displayBars() {
+  $(".bar-list").find("li").remove(); //remove any bars currently on DOM from previous call
   for (let index = 0; index < 5; index++) {
     var barEl = document.getElementById(`bar-${index}`);
     var barURL = barResults.businesses[index].url;
