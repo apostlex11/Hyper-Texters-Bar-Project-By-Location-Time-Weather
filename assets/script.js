@@ -144,16 +144,14 @@ const forecast = function (data) {
 
 tableContainerEl.addEventListener("click", function (event) {
   var clickTarget = event.target;
-  if (event.target.style.backgroundColor === "yellow") {
-    //if user clicks on a yellow cell
-    barTime = event.target.id; // set barTime to id, which is the un
-    console.log("bartime is " + barTime); // delete
-    callYelp();
 
-    // console.log("it's yellow");
+  //if user clicks on a yellow cell
+  if (event.target.style.backgroundColor === "yellow") {
+    barTime = event.target.id; // set barTime to cell id, which is the unix timestamp to pass to yelp
+    callYelp();
+    // in case uses clicks on the image inside of a yellow cell, we still want to call Yelp API
   } else if (event.target.parentElement.style.backgroundColor === "yellow") {
     barTime = event.target.parentElement.id;
-    console.log("bartime is " + barTime); // delete
     callYelp();
   }
 });
@@ -185,7 +183,7 @@ function callYelp() {
     },
   }).then(function (res) {
     barResults = res;
-    console.log(barResults); //delete
+
     //list bars on DOM at end promise
     displayBars();
     ShowStores();
