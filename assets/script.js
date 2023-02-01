@@ -22,6 +22,10 @@ var barResults; //yelp api response object
 
 const weatherLookup = function (event) {
   event.preventDefault();
+  if(showTable[0].attributes[3].textContent === "display: inline-block") {
+    showTable[0].attributes[3].textContent = "display: none";
+    hideTable[0].attributes[2].textContent = "display: inline-block";
+  }
   hideStores(); //hide bar suggestions upon a new city search
   $(".bar-list").find("li").remove(); //remove any bars currently on DOM from previous call
 
@@ -52,7 +56,7 @@ const weatherLookup = function (event) {
       console.log(response.status);
       console.log(txtWarning);
       if(response.status === 404){
-        txtWarning[0].innerHTML = 'Please enter a city name and state code in the format provided.';
+        txtWarning[0].innerHTML = 'Unable to find city. Please make sure you are using the proper format and spelling.';
         txtWarning[0].attributes.style.textContent = "visibility: visible";
         setTimeout(()=>{
           txtWarning[0].attributes.style.textContent = "visibility: hidden";
