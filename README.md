@@ -10,7 +10,7 @@ We also needed instructor/TA assistance to get the Yelp API running as it does n
 
 ## Usage
 
-The deployed app can be reached here: [https://apostlex11.github.io/Team-5-Project/](https://apostlex11.github.io/Team-5-Project/)
+The deployed app can be reached here: [https://apostlex11.github.io/Hyper-Texters-Bar-Project-By-Location-Time-Weather](https://apostlex11.github.io/Hyper-Texters-Bar-Project-By-Location-Time-Weather)
 
 The user enters a US city and its two letter state abbreviation, which will populate a 5-day table showing the weather forecast in 3-hour blocks. Acceptably sunny conditions are highlighted in yellow and are clickable. Acceptable conditions include "Clear skies," "Scattered clouds," "Broken clouds," and "Few clouds." All other conditions are greyed out.
 
