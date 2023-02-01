@@ -18,6 +18,8 @@ var barResults; //yelp api response object
 
 const weatherLookup = function (event) {
   event.preventDefault();
+  hideStores(); //hide bar suggestions upon a new city search
+  $(".bar-list").find("li").remove(); //remove any bars currently on DOM from previous call
 
   searchInputVal = document.querySelector("#result").value;
   cityStateArr = searchInputVal.split(", ");
@@ -242,6 +244,11 @@ function ShowStores() {
   var storeslist = document.getElementById("storeLists");
   storeslist.style.visibility = "visible";
   // storeslist.style.justifyContent = "center"
+}
+
+function hideStores() {
+  var storeslist = document.getElementById("storeLists");
+  storeslist.style.visibility = "hidden";
 }
 
 $("#srchBTN").on("click", weatherLookup);
