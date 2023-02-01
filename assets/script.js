@@ -2,10 +2,12 @@
 var cityTitle = document.querySelector("#cityTitle");
 var table = $(".table");
 //city and state to be define by user input
-var cityData = {};
+
 var cityStateArr = [];
 var forecastData = {}; // assign last forecast object to put in local storage
 var storedForecast = JSON.parse(localStorage.getItem("forecastData")); //get value of forecastData from local storage
+var storedCityData = JSON.parse(localStorage.getItem("cityData")); //get value of cityData from local storage
+var cityData = storedCityData;
 
 //vvv Variables for Yelp Api functions vvv
 
@@ -39,6 +41,8 @@ const weatherLookup = function (event) {
       TestFunction();
       current(data);
       cityData = data;
+      //store cityData in local storage
+      localStorage.setItem("cityData", JSON.stringify(data));
       console.log(cityData);
       forecastLookup(data.coord.lat, data.coord.lon);
 
@@ -247,4 +251,9 @@ if (storedForecast !== null) {
   forecast(storedForecast); //re-parses previous forecast data
   cityTitle.textContent = storedForecast.city.name; // show city name
   TestFunction(); //displays table
+}
+
+//on page load, check if storedCityData exists, and then assign it to cityData for the yelp call
+if (storedCityData) {
+  cityData = storedCityData;
 }
