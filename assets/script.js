@@ -187,7 +187,7 @@ function displayBars() {
     var styleLi = document.createElement("li");
     var imageLi = document.createElement("li");
 
-    nameLi.innerHTML = `<a href=${barURL}>${barResults.businesses[index].name}</a>`;
+    nameLi.innerHTML = `<a href=${barURL} target=_blank>${barResults.businesses[index].name}</a>`;
     ratingLi.textContent = `Rating: ${barResults.businesses[index].rating}`;
     priceLi.textContent = `Price: ${barResults.businesses[index].price}`;
     styleLi.textContent = `Style: ${barResults.businesses[index].categories[0].title}`;
