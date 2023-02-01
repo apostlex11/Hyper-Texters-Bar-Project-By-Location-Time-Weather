@@ -21,7 +21,19 @@ The user can then click on a bar to visit its Yelp page to learn more, and hopef
 Demo:
 ![gif demonstrating product functionality](./assets/img/sunny-beer-finder-demo.gif)
 
-Our acceptance criteria for this project
+Our acceptance criteria for this project was:
+
+```
+When the user searches for a given city, then the page displays when it will be sunny/clear in that city over the next 5 days, as well as info like temperature and general conditions (partly cloudy, etc.)
+
+When the user clicks on a sunny time block, then the page displays bars in the city that are open during that time.
+
+When the bars are displayed, then we see their yelp rating and a description of the cuisine.
+
+When the bars are displayed, then we can also link out to that bar or their yelp page.
+
+When we refresh the page, the last forecast loads on the screen.
+```
 
 ## Credits
 
