@@ -4,6 +4,8 @@ var table = $(".table");
 //city and state to be define by user input
 var cityData = {};
 var cityStateArr = [];
+var forecastData = {}; // assign last forecast object to put in local storage
+var storedForecast = JSON.parse(localStorage.getItem("forecastData")); //get value of forecastData from local storage
 
 //vvv Variables for Yelp Api functions vvv
 
@@ -62,6 +64,9 @@ const forecastLookup = function (lat, lon) {
     })
     .then(function (data) {
       console.log(data.list);
+      forecastData = data;
+      //store forecastData in local storage
+      localStorage.setItem("forecastData", JSON.stringify(forecastData));
       forecast(data);
     });
 };
@@ -79,7 +84,7 @@ const forecast = function (data) {
   $("table").find("td").remove();
   for (x = 0; x < data.list.length; x += 8) {
     var dayHeader = $("#" + x);
-    localTime = dayjs((data.list[x].dt + data.city.timezone) * 1000).format(
+    var localTime = dayjs((data.list[x].dt + data.city.timezone) * 1000).format(
       "MM/DD/YYYY"
     );
     console.log(localTime);
@@ -213,12 +218,12 @@ function displayBars() {
 
     //image stuff. use or comment out.
     var imageLi = document.createElement("li");
-    
+
     imageLi.innerHTML = `<img src=${barResults.businesses[index].image_url} alt= "default uploaded to Yelp by the business"></img>`;
     barEl.append(imageLi);
-    imageLi.style.border = "3px solid #000000"
-    imageLi.style.padding = "5px 5px 1px 5px"
-    imageLi.style.margin = "0px"
+    imageLi.style.border = "3px solid #000000";
+    imageLi.style.padding = "5px 5px 1px 5px";
+    imageLi.style.margin = "0px";
   }
 }
 
@@ -230,9 +235,16 @@ function TestFunction() {
 }
 
 function ShowStores() {
-  var storeslist = document.getElementById("storeLists")
+  var storeslist = document.getElementById("storeLists");
   storeslist.style.visibility = "visible";
   // storeslist.style.justifyContent = "center"
 }
 
 $("#srchBTN").on("click", weatherLookup);
+
+// on page load check if there was forecast object in local storage before showing the table
+if (storedForecast !== null) {
+  forecast(storedForecast); //re-parses previous forecast data
+  cityTitle.textContent = storedForecast.city.name; // show city name
+  TestFunction(); //displays table
+}
