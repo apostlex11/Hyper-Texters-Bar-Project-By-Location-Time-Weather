@@ -38,16 +38,16 @@ When we refresh the page, the last forecast loads on the screen.
 ## Credits
 
 **Team Members:**
-[Jordan Pace](https://github.com/Jaydonger)
-[Michael Falcon](https://github.com/ZOID415)
-[Terry Sa](https://github.com/apostlex11)
-[Jonathan Gomer](https://github.com/jongomer22)
+[Jordan Pace](https://github.com/Jaydonger)  
+[Michael Falcon](https://github.com/ZOID415)  
+[Terry Sa](https://github.com/apostlex11)  
+[Jonathan Gomer](https://github.com/jongomer22)  
 [Christopher DuBois](https://github.com/rhubarb414)
 
 **Third-party apps:**
-[OpenWeather API](https://openweathermap.org/api/one-call-3)
-[Yelp API](https://docs.developer.yelp.com/docs/fusion-intro)
-[cors-anywhere](https://github.com/Rob--W/cors-anywhere/)
+[OpenWeather API](https://openweathermap.org/api/one-call-3)  
+[Yelp API](https://docs.developer.yelp.com/docs/fusion-intro)  
+[cors-anywhere](https://github.com/Rob--W/cors-anywhere/)  
 [Heroku](https://www.heroku.com/)
 
 ## License
