@@ -180,13 +180,14 @@ function callYelp() {
 function displayBars() {
   for (let index = 0; index < 5; index++) {
     var barEl = document.getElementById(`bar-${index}`);
+    var barURL = barResults.businesses[index].url;
     var nameLi = document.createElement("li");
     var ratingLi = document.createElement("li");
     var priceLi = document.createElement("li");
     var styleLi = document.createElement("li");
     var imageLi = document.createElement("li");
 
-    nameLi.textContent = barResults.businesses[index].name;
+    nameLi.innerHTML = `<a href=${barURL}>${barResults.businesses[index].name}</a>`;
     ratingLi.textContent = `Rating: ${barResults.businesses[index].rating}`;
     priceLi.textContent = `Price: ${barResults.businesses[index].price}`;
     styleLi.textContent = `Style: ${barResults.businesses[index].categories[0].title}`;
@@ -197,7 +198,6 @@ function displayBars() {
     barEl.append(priceLi);
     barEl.append(styleLi);
     barEl.append(imageLi);
-    // console.log("barEl = " + barEl, barResults);
   }
 }
 
