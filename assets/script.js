@@ -39,7 +39,7 @@ const weatherLookup = function (event) {
       cityData = data;
       console.log(cityData);
       forecastLookup(data.coord.lat, data.coord.lon);
- 
+
       var container = $("#current");
       //data in console will have lat and long for city
       //then do string concat lat and long with what you get in the data object
@@ -76,7 +76,7 @@ const current = function (data) {
 };
 
 const forecast = function (data) {
-  $('table').find('td').remove();
+  $("table").find("td").remove();
   for (x = 0; x < data.list.length; x += 8) {
     var dayHeader = $("#" + x);
     localTime = dayjs((data.list[x].dt + data.city.timezone) * 1000).format(
@@ -86,7 +86,7 @@ const forecast = function (data) {
     dayHeader[0].innerHTML = localTime;
     for (i = 0; i < 6; i++) {
       var tdContent = $("#TS" + i);
-      
+
       var n = x + i + 1;
       var iconcode = data.list[n].weather[0].icon;
       var imgEl = $(
@@ -152,6 +152,7 @@ function callYelp() {
   const yelpAPIKey =
     "OvqraNwLlNROU78GbI7ZocG6XKXRhYIKGby6JiTRzyOqjzUrjnVRThOlOtQSVIIN2dh0TWrttP0TtXJncUKu6sEKB4ywoOo-jAz1HjmDta069a2EQC1mvn37QGbPY3Yx";
 
+  //fetch request
   $.ajax({
     url: yelpQueryURL,
     method: "GET",
@@ -169,19 +170,36 @@ function callYelp() {
     },
   }).then(function (res) {
     barResults = res;
-    console.log(barResults);
+    console.log(barResults); //delete
+    //list bars on DOM at end promise
     displayBars();
   });
 }
 
-
 // display bar information
 function displayBars() {
-  var barEl;
   for (let index = 0; index < 5; index++) {
-    barEl = document.getElementById(`bar-${index}`);
-    console.log("barEl = " + barEl, barResults);
-    barEl.textContent = barResults.businesses[index].name;
+    var barEl = document.getElementById(`bar-${index}`);
+    var barURL = barResults.businesses[index].url;
+    var nameLi = document.createElement("li");
+    var ratingLi = document.createElement("li");
+    var priceLi = document.createElement("li");
+    var styleLi = document.createElement("li");
+
+    nameLi.innerHTML = `<a href=${barURL} target=_blank>${barResults.businesses[index].name}</a>`;
+    ratingLi.textContent = `Rating: ${barResults.businesses[index].rating}`;
+    priceLi.textContent = `Price: ${barResults.businesses[index].price}`;
+    styleLi.textContent = `Style: ${barResults.businesses[index].categories[0].title}`;
+
+    barEl.append(nameLi);
+    barEl.append(ratingLi);
+    barEl.append(priceLi);
+    barEl.append(styleLi);
+
+    //image stuff. use or comment out.
+    var imageLi = document.createElement("li");
+    imageLi.innerHTML = `<img src=${barResults.businesses[index].image_url} alt= "default uploaded to Yelp by the business"></img>`;
+    barEl.append(imageLi);
   }
 }
 
@@ -191,6 +209,5 @@ function TestFunction() {
   var T2 = document.getElementById("tableDisplay");
   T2.style.display = "block";
 }
-
 
 $("#srchBTN").on("click", weatherLookup);
