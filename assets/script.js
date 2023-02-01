@@ -108,6 +108,7 @@ const forecast = function (data) {
         td.append(linebreak);
         td.append(imgEl);
         td[0].style.backgroundColor = "yellow";
+        td[0].style.cursor = "pointer";
       } else if (data.list[n].weather[0].description !== "clear sky") {
         td[0].style.backgroundColor = "gray";
       }
@@ -173,6 +174,7 @@ function callYelp() {
     console.log(barResults); //delete
     //list bars on DOM at end promise
     displayBars();
+    ShowStores();
   });
 }
 
@@ -199,8 +201,12 @@ function displayBars() {
 
     //image stuff. use or comment out.
     var imageLi = document.createElement("li");
+    
     imageLi.innerHTML = `<img src=${barResults.businesses[index].image_url} alt= "default uploaded to Yelp by the business"></img>`;
     barEl.append(imageLi);
+    imageLi.style.border = "3px solid #000000"
+    imageLi.style.padding = "5px 5px 1px 5px"
+    imageLi.style.margin = "0px"
   }
 }
 
@@ -209,6 +215,12 @@ function TestFunction() {
   T.style.display = "block";
   var T2 = document.getElementById("tableDisplay");
   T2.style.display = "block";
+}
+
+function ShowStores() {
+  var storeslist = document.getElementById("storeLists")
+  storeslist.style.visibility = "visible";
+  // storeslist.style.justifyContent = "center"
 }
 
 $("#srchBTN").on("click", weatherLookup);
