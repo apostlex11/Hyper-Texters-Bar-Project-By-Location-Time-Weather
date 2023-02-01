@@ -24,7 +24,7 @@
       <section class="hero">
         <img id="img-hero" src= "./assets/img/beer-bubble.jpeg" alt= "close-up of beer"/>
         <div class="hero-body has-text-centered">
-          <p class="title">Sunny Beer Finder</p>
+          <h1 class="title">Sunny Beer Finder</h1>
           <p class="subtitle">for the alcoholic in you!</p>
         </div>
       </section>
@@ -40,24 +40,31 @@
         </form>
       </div>
 
+      <h2 id="noTXT" class="has-text-centered" style="visibility: hidden"></h2>
+
       <div class="column has-text-centered">
         <button id="srchBTN" type="button" class="button is-danger is-outlined">
           Search
         </button>
-        <!-- <button
+        <button
           id="clearBTN"
-          value="Reload Page"
-          onClick="window.location.reload(true)"
           type="submit"
+          style="display: inline-block"
           class="button is-danger is-outlined align-items"
         >
-          Clear table
-        </button> -->
+          Hide table
+        </button>
+        <button
+          id="unclearBTN"
+          type="submit"
+          class="button is-danger is-outlined align-items"
+          style="display: none"
+        >
+          Show table
+        </button>
       </div>
 
-      <p id="cityTitle" class="title has-text-centered" style="display: none">
-        City name
-      </p>
+      <h2 id="cityTitle" class="title has-text-centered" style="display: none"></h2>
 
       <div id="tableDisplay" class="table-container" style="display: none">
         <table class="table is-bordered is-hoverable">
