@@ -40,7 +40,7 @@ const weatherLookup = function (event) {
     })
     .then(function (data) {
       console.log(data);
-      TestFunction();
+      showTables();
       current(data);
       cityData = data;
       //store cityData in local storage
@@ -233,7 +233,7 @@ function displayBars() {
   }
 }
 
-function TestFunction() {
+function showTables() {
   var T = document.getElementById("cityTitle");
   T.style.display = "block";
   var T2 = document.getElementById("tableDisplay");
@@ -257,7 +257,7 @@ $("#srchBTN").on("click", weatherLookup);
 if (storedForecast !== null) {
   forecast(storedForecast); //re-parses previous forecast data
   cityTitle.textContent = storedForecast.city.name; // show city name
-  TestFunction(); //displays table
+  showTables(); //displays table
 }
 
 //on page load, check if storedCityData exists, and then assign it to cityData for the yelp call
