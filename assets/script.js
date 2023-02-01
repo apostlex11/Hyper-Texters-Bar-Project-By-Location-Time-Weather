@@ -5,6 +5,7 @@ var txtWarning = $("#noTXT");
 var hideTable = $("#clearBTN");
 var showTable = $("#unclearBTN");
 var tableDisplay = $('#tableDisplay');
+var noBars = $('#noBars');
 //city and state to be define by user input
 
 var cityStateArr = [];
@@ -224,6 +225,7 @@ function callYelp() {
     },
   }).then(function (res) {
     barResults = res;
+    console.log(barResults);
 
     //list bars on DOM at end promise
     displayBars();
@@ -236,6 +238,15 @@ function displayBars() {
   $(".bar-list").find("li").remove(); //remove any bars currently on DOM from previous call
   for (let index = 0; index < 5; index++) {
     var barEl = document.getElementById(`bar-${index}`);
+    if(barResults.businesses.length === 0) {
+      console.log(noBars);
+      noBars[0].innerHTML = 'Unfortunately, there are no nearby restaurants with bars open at this time.';
+       noBars[0].attributes[2].textContent = "visibility: visible";
+        setTimeout(()=>{
+          noBars[0].attributes[2].textContent = "visibility: hidden";
+        }, 4000)
+        return;
+    }
     var barURL = barResults.businesses[index].url;
     var nameLi = document.createElement("li");
     var ratingLi = document.createElement("li");

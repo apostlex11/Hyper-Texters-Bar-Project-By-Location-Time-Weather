@@ -50,6 +50,12 @@
     font-family: 'Oswald', sans-serif;
 }
 
+#noBars {
+    margin-bottom: 20px;
+    font-size:larger;
+    font-weight:bolder;
+}
+
 .table, th, td, tr {
     border: 2px solid rgb(0, 247, 255);
     text-align:center;
