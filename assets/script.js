@@ -185,18 +185,20 @@ function displayBars() {
     var ratingLi = document.createElement("li");
     var priceLi = document.createElement("li");
     var styleLi = document.createElement("li");
-    var imageLi = document.createElement("li");
 
     nameLi.innerHTML = `<a href=${barURL} target=_blank>${barResults.businesses[index].name}</a>`;
     ratingLi.textContent = `Rating: ${barResults.businesses[index].rating}`;
     priceLi.textContent = `Price: ${barResults.businesses[index].price}`;
     styleLi.textContent = `Style: ${barResults.businesses[index].categories[0].title}`;
-    imageLi.innerHTML = `<img src=${barResults.businesses[index].image_url} alt= "default uploaded to Yelp by the business"></img>`;
 
     barEl.append(nameLi);
     barEl.append(ratingLi);
     barEl.append(priceLi);
     barEl.append(styleLi);
+
+    //image stuff. use or comment out.
+    var imageLi = document.createElement("li");
+    imageLi.innerHTML = `<img src=${barResults.businesses[index].image_url} alt= "default uploaded to Yelp by the business"></img>`;
     barEl.append(imageLi);
   }
 }
