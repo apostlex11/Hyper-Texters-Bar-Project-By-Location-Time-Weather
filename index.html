@@ -45,11 +45,25 @@
         <button id="srchBTN" type="button" class="button is-danger is-outlined">
           Search
         </button>
+        <button
+          id="clearBTN"
+          type="submit"
+          style="display: inline-block"
+          class="button is-danger is-outlined align-items"
+        >
+          Hide table
+        </button>
+        <button
+          id="unclearBTN"
+          type="submit"
+          class="button is-danger is-outlined align-items"
+          style="display: none"
+        >
+          Show table
+        </button>
       </div>
 
-      <h2 id="cityTitle" class="title has-text-centered" style="display: none">
-        City name
-      </h2>
+      <h2 id="cityTitle" class="title has-text-centered" style="display: none"></h2>
 
       <div id="tableDisplay" class="table-container" style="display: none">
         <table class="table is-bordered is-hoverable">

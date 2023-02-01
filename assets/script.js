@@ -2,6 +2,9 @@
 var cityTitle = document.querySelector("#cityTitle");
 var table = $(".table");
 var txtWarning = $("#noTXT");
+var hideTable = $("#clearBTN");
+var showTable = $("#unclearBTN");
+var tableDisplay = $('#tableDisplay');
 //city and state to be define by user input
 
 var cityStateArr = [];
@@ -275,6 +278,27 @@ function hideStores() {
 }
 
 $("#srchBTN").on("click", weatherLookup);
+
+hideTable.on("click",()=>{
+  if(cityTitle.textContent === ''){
+    txtWarning[0].innerHTML = 'There is currently no table content to hide.';
+    txtWarning[0].attributes.style.textContent = "visibility: visible";
+    setTimeout(()=>{
+      txtWarning[0].attributes.style.textContent = "visibility: hidden";
+    }, 2000)
+    return;
+  }
+  tableDisplay[0].attributes[2].textContent = "display: none";
+  console.log(cityTitle.textContent);
+  hideTable[0].attributes[2].textContent = "display: none";
+  showTable[0].attributes[3].textContent = "display: inline-block";
+})
+
+showTable.on("click",()=>{
+  tableDisplay[0].attributes[2].textContent = "display: block";
+  showTable[0].attributes[3].textContent = "display: none";
+  hideTable[0].attributes[2].textContent = "display: inline-block";
+})
 
 // on page load check if there was forecast object in local storage before showing the table
 if (storedForecast !== null) {
