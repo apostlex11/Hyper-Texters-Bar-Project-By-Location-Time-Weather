@@ -46,20 +46,29 @@
 }
 
 .table, th, td, tr {
-    border: 2px solid green;
+    border: 2px solid rgb(0, 247, 255);
     text-align:center;
     padding: 20px;
 }
 
 .table th {
-    border: 2px solid green;
+    border: 2px solid rgb(0, 247, 255);
 }
 
 .table td {
-    border: 2px solid green;
+    border: 2px solid rgb(0, 247, 255);
 }
 
 .table tr {
-    border: 2px solid green;
+    border: 2px solid rgb(0, 247, 255);
 }
 
+/* #TS0 #TS1 #TS2 #TS3 #TS4 #TS5 {
+    cursor: pointer;
+} */
+
+.box {
+    border: 2px solid rgb(0, 247, 255);
+    display: block;
+    height: auto;
+}
