@@ -1,6 +1,7 @@
 //var button = $("button");
 var cityTitle = document.querySelector("#cityTitle");
 var table = $(".table");
+var txtWarning = $("#noTXT");
 //city and state to be define by user input
 
 var cityStateArr = [];
@@ -22,6 +23,14 @@ const weatherLookup = function (event) {
   $(".bar-list").find("li").remove(); //remove any bars currently on DOM from previous call
 
   searchInputVal = document.querySelector("#result").value;
+  if(searchInputVal === ''){
+    txtWarning[0].innerHTML = 'Please enter a city name and state code in the format provided.';
+    txtWarning[0].attributes.style.textContent = "visibility: visible";
+    setTimeout(()=>{
+      txtWarning[0].attributes.style.textContent = "visibility: hidden";
+    }, 4000)
+    return;
+  };
   cityStateArr = searchInputVal.split(", ");
   //console.log(cityStateArr);
 
@@ -34,11 +43,25 @@ const weatherLookup = function (event) {
       cityStateArr[1] +
       ",US" +
       "&appid=7e8f7106e0004f7fac5f624653ef7dca&units=imperial"
+      
   )
     .then(function (response) {
+      console.log(response.status);
+      console.log(txtWarning);
+      if(response.status === 404){
+        txtWarning[0].innerHTML = 'Please enter a city name and state code in the format provided.';
+        txtWarning[0].attributes.style.textContent = "visibility: visible";
+        setTimeout(()=>{
+          txtWarning[0].attributes.style.textContent = "visibility: hidden";
+        }, 4000)
+        return;
+      };
       return response.json();
     })
     .then(function (data) {
+      if(data === undefined){
+        return;
+      }
       console.log(data);
       TestFunction();
       current(data);
