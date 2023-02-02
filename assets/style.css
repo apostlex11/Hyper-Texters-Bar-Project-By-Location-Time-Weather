@@ -11,7 +11,7 @@
 .table {
     margin: auto;
     padding: 20px;
-    color: hsl(171, 100%, 41%)
+    color: black;
 }
 
 .overlay {
@@ -58,6 +58,7 @@
 
 .table, th, td, tr {
     border: 2px solid rgb(0, 247, 255);
+    /* border: 2px solid rgb(3, 255, 255); */
     text-align:center;
     padding: 20px;
 }
