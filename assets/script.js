@@ -4,8 +4,8 @@ var table = $(".table");
 var txtWarning = $("#noTXT");
 var hideTable = $("#clearBTN");
 var showTable = $("#unclearBTN");
-var tableDisplay = $('#tableDisplay');
-var noBars = $('#noBars');
+var tableDisplay = $("#tableDisplay");
+var noBars = $("#noBars");
 //city and state to be define by user input
 
 var cityStateArr = [];
@@ -23,7 +23,7 @@ var barResults; //yelp api response object
 
 const weatherLookup = function (event) {
   event.preventDefault();
-  if(showTable[0].attributes[3].textContent === "display: inline-block") {
+  if (showTable[0].attributes[3].textContent === "display: inline-block") {
     showTable[0].attributes[3].textContent = "display: none";
     hideTable[0].attributes[2].textContent = "display: inline-block";
   }
@@ -31,7 +31,7 @@ const weatherLookup = function (event) {
   $(".bar-list").find("li").remove(); //remove any bars currently on DOM from previous call
 
   searchInputVal = document.querySelector("#result").value;
-  var stateCheck = searchInputVal.indexOf(',');
+  var stateCheck = searchInputVal.indexOf(",");
   cityStateArr = searchInputVal.split(", ");
 
   fetch(
@@ -41,34 +41,36 @@ const weatherLookup = function (event) {
       cityStateArr[1] +
       ",US" +
       "&appid=7e8f7106e0004f7fac5f624653ef7dca&units=imperial"
-      
   )
     .then(function (response) {
-      if(searchInputVal === ''){
-        txtWarning[0].innerHTML = 'Please enter a city name and state code in the format provided.';
+      if (searchInputVal === "") {
+        txtWarning[0].innerHTML =
+          "Please enter a city name and state code in the format provided.";
         txtWarning[0].attributes.style.textContent = "visibility: visible";
-        setTimeout(()=>{
+        setTimeout(() => {
           txtWarning[0].attributes.style.textContent = "visibility: hidden";
-        }, 4000)
+        }, 4000);
         return;
-      } else if(stateCheck === -1 && response.status === 200) {
-        txtWarning[0].innerHTML = 'This city might not be the one you want. Consider adding a state to the search criteria.';
+      } else if (stateCheck === -1 && response.status === 200) {
+        txtWarning[0].innerHTML =
+          "This city might not be the one you want. Consider adding a state to the search criteria.";
         txtWarning[0].attributes.style.textContent = "visibility: visible";
-        setTimeout(()=>{
+        setTimeout(() => {
           txtWarning[0].attributes.style.textContent = "visibility: hidden";
-        }, 4000)
-      }else if(response.status === 404){
-        txtWarning[0].innerHTML = 'Unable to find city. Please make sure you are using the proper format and spelling.';
+        }, 4000);
+      } else if (response.status === 404) {
+        txtWarning[0].innerHTML =
+          "Unable to find city. Please make sure you are using the proper format and spelling.";
         txtWarning[0].attributes.style.textContent = "visibility: visible";
-        setTimeout(()=>{
+        setTimeout(() => {
           txtWarning[0].attributes.style.textContent = "visibility: hidden";
-        }, 4000)
+        }, 4000);
         return;
-      };
+      }
       return response.json();
     })
     .then(function (data) {
-      if(data === undefined){
+      if (data === undefined) {
         return;
       }
       console.log(data);
@@ -123,7 +125,7 @@ const forecast = function (data) {
   for (x = 0; x < data.list.length; x += 8) {
     var dayHeader = $("#" + x);
     var localTime = dayjs((data.list[x].dt + data.city.timezone) * 1000).format(
-      "MM/DD/YYYY"
+      "dddd MM/DD/YYYY"
     );
     console.log(localTime);
     dayHeader[0].innerHTML = localTime;
@@ -193,7 +195,9 @@ tableContainerEl.addEventListener("click", function (event) {
     barTime = event.target.id; // set barTime to cell id, which is the unix timestamp to pass to yelp
     callYelp();
     // in case uses clicks on the image inside of a yellow cell, we still want to call Yelp API
-  } else if (event.target.parentElement.style.backgroundColor === "rgb(217, 250, 255)") {
+  } else if (
+    event.target.parentElement.style.backgroundColor === "rgb(217, 250, 255)"
+  ) {
     barTime = event.target.parentElement.id;
     callYelp();
   }
@@ -239,13 +243,14 @@ function displayBars() {
   $(".bar-list").find("li").remove(); //remove any bars currently on DOM from previous call
   for (let index = 0; index < 5; index++) {
     var barEl = document.getElementById(`bar-${index}`);
-    if(barResults.businesses.length === 0) {
+    if (barResults.businesses.length === 0) {
       console.log(noBars);
-      noBars[0].innerHTML = 'Unfortunately, there are no nearby restaurants with bars open at this time.';
+      noBars[0].innerHTML =
+        "Unfortunately, there are no nearby restaurants with bars open at this time.";
       noBars[0].attributes[2].textContent = "visibility: visible";
-      setTimeout(()=>{
+      setTimeout(() => {
         noBars[0].attributes[2].textContent = "visibility: hidden";
-      }, 4000)
+      }, 4000);
       return;
     }
     var barURL = barResults.businesses[index].url;
@@ -295,26 +300,26 @@ function hideStores() {
 
 $("#srchBTN").on("click", weatherLookup);
 
-hideTable.on("click",()=>{
-  if(cityTitle.textContent === ''){
-    txtWarning[0].innerHTML = 'There is currently no table content to hide.';
+hideTable.on("click", () => {
+  if (cityTitle.textContent === "") {
+    txtWarning[0].innerHTML = "There is currently no table content to hide.";
     txtWarning[0].attributes.style.textContent = "visibility: visible";
-    setTimeout(()=>{
+    setTimeout(() => {
       txtWarning[0].attributes.style.textContent = "visibility: hidden";
-    }, 2000)
+    }, 2000);
     return;
   }
   tableDisplay[0].attributes[2].textContent = "display: none";
   console.log(cityTitle.textContent);
   hideTable[0].attributes[2].textContent = "display: none";
   showTable[0].attributes[3].textContent = "display: inline-block";
-})
+});
 
-showTable.on("click",()=>{
+showTable.on("click", () => {
   tableDisplay[0].attributes[2].textContent = "display: block";
   showTable[0].attributes[3].textContent = "display: none";
   hideTable[0].attributes[2].textContent = "display: inline-block";
-})
+});
 
 // on page load check if there was forecast object in local storage before showing the table
 if (storedForecast !== null) {
