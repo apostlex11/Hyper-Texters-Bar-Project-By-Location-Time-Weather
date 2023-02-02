@@ -164,10 +164,10 @@ const forecast = function (data) {
         tempPtag.textContent = `${tempVal}º`;
         td.append(tempPtag);
 
-        td[0].style.backgroundColor = "yellow";
+        td[0].style.backgroundColor = "rgb(217 250 255)";
         td[0].style.cursor = "pointer";
       } else if (data.list[n].weather[0].description !== "clear sky") {
-        td[0].style.backgroundColor = "gray";
+        td[0].style.backgroundColor = "rgb(178, 178, 178)";
       }
     }
   }
@@ -189,11 +189,11 @@ tableContainerEl.addEventListener("click", function (event) {
   var clickTarget = event.target;
 
   //if user clicks on a yellow cell
-  if (event.target.style.backgroundColor === "yellow") {
+  if (event.target.style.backgroundColor === "rgb(217, 250, 255)") {
     barTime = event.target.id; // set barTime to cell id, which is the unix timestamp to pass to yelp
     callYelp();
     // in case uses clicks on the image inside of a yellow cell, we still want to call Yelp API
-  } else if (event.target.parentElement.style.backgroundColor === "yellow") {
+  } else if (event.target.parentElement.style.backgroundColor === "rgb(217, 250, 255)") {
     barTime = event.target.parentElement.id;
     callYelp();
   }
