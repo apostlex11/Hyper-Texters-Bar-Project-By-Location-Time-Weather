@@ -31,19 +31,9 @@ const weatherLookup = function (event) {
   $(".bar-list").find("li").remove(); //remove any bars currently on DOM from previous call
 
   searchInputVal = document.querySelector("#result").value;
-  if(searchInputVal === ''){
-    txtWarning[0].innerHTML = 'Please enter a city name and state code in the format provided.';
-    txtWarning[0].attributes.style.textContent = "visibility: visible";
-    setTimeout(()=>{
-      txtWarning[0].attributes.style.textContent = "visibility: hidden";
-    }, 4000)
-    return;
-  };
+  var stateCheck = searchInputVal.indexOf(',');
   cityStateArr = searchInputVal.split(", ");
-  //console.log(cityStateArr);
 
-  // var city = $(".input").val();
-  // console.log(city);
   fetch(
     "https://api.openweathermap.org/data/2.5/weather?q=" +
       cityStateArr[0] +
@@ -54,9 +44,20 @@ const weatherLookup = function (event) {
       
   )
     .then(function (response) {
-      console.log(response.status);
-      console.log(txtWarning);
-      if(response.status === 404){
+      if(searchInputVal === ''){
+        txtWarning[0].innerHTML = 'Please enter a city name and state code in the format provided.';
+        txtWarning[0].attributes.style.textContent = "visibility: visible";
+        setTimeout(()=>{
+          txtWarning[0].attributes.style.textContent = "visibility: hidden";
+        }, 4000)
+        return;
+      } else if(stateCheck === -1 && response.status === 200) {
+        txtWarning[0].innerHTML = 'This city might not be the one you want. Consider adding a state to the search criteria.';
+        txtWarning[0].attributes.style.textContent = "visibility: visible";
+        setTimeout(()=>{
+          txtWarning[0].attributes.style.textContent = "visibility: hidden";
+        }, 4000)
+      }else if(response.status === 404){
         txtWarning[0].innerHTML = 'Unable to find city. Please make sure you are using the proper format and spelling.';
         txtWarning[0].attributes.style.textContent = "visibility: visible";
         setTimeout(()=>{
@@ -241,11 +242,11 @@ function displayBars() {
     if(barResults.businesses.length === 0) {
       console.log(noBars);
       noBars[0].innerHTML = 'Unfortunately, there are no nearby restaurants with bars open at this time.';
-       noBars[0].attributes[2].textContent = "visibility: visible";
-        setTimeout(()=>{
-          noBars[0].attributes[2].textContent = "visibility: hidden";
-        }, 4000)
-        return;
+      noBars[0].attributes[2].textContent = "visibility: visible";
+      setTimeout(()=>{
+        noBars[0].attributes[2].textContent = "visibility: hidden";
+      }, 4000)
+      return;
     }
     var barURL = barResults.businesses[index].url;
     var nameLi = document.createElement("li");
